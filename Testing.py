@@ -1,15 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec  7 03:54:38 2020
 
-@author: ivpcl
-"""
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Oct 15 18:20:44 2020
-
-@author: ivpcl
-"""
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -72,12 +61,10 @@ def predict_char(gray, model, idx):
     plt.imshow(canvas)
     plt.show()
 
-    #test_data = np.array(gray)
     test_output = model(Variable(torch.FloatTensor(canvas).unsqueeze(0).unsqueeze(0).cuda()))
     pred = test_output.data.max(1, keepdim=True)[1] 
     pred.cpu().numpy()
     
-    # pred = np.array(pred).squeeze(0).squeeze(0)
     print('Predicted Label: ', idx[pred])
     
     
@@ -93,12 +80,10 @@ def testing():
     model.load_state_dict(torch.load("./char_recognizer_emnist_11_29.pt"))
     model.to(torch.device('cuda'))
 
-    # pil_im =  Image.open(r"D:\Ugesh\Hexadecemial_Dataset\F\Image_0040.jpg")
     pil_im =  Image.open(r"D:\Ugesh\CroppedLetters\0363.jpg")
     new_width  = 40
     new_height = 40
     pil_im = pil_im.resize((new_width, new_height), Image.BICUBIC)
-    # resized_im = pil_im.resize(int('30', '30'), Image.BICUBIC())
     predict_char(pil_im, model, idx)
 
 if __name__ == '__main__':

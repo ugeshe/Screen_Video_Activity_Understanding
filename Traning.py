@@ -1,22 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 29 17:27:28 2020
-
-@author: ivpcl
-"""
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 21 14:36:27 2020
-
-@author: ivpcl
-"""
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Oct 15 18:20:44 2020
-
-@author: ivpcl
-"""
-
 import cv2
 import torch
 import torch.nn as nn
@@ -34,19 +15,10 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import ToTensor
 from IPython.display import clear_output
 
-
-
-
 def pil_loader(path):
     with open(path, 'rb') as f:
         img = Image.open(f)
         return img.convert('L')
-    
-    
-    
-
-
-
 
 class Net(nn.Module):
     def __init__(self):
@@ -71,52 +43,7 @@ class Net(nn.Module):
         return x
 
 
-
-
-
-# def train(epoch):
-#     model.train()
-#     for batch_idx, (data, target) in enumerate(loader):
-#         # data, target = data.cuda(), target.cuda()
-#         data, target = data.to(torch.device('cuda')), target.to(torch.device('cuda'))
-#         data, target = Variable(data), Variable(target)
-#         optimizer.zero_grad()
-#         output = model(data)
-#         loss = nn.CrossEntropyLoss()
-#         output = loss(output, target)
-#         output.backward()
-#         optimizer.step()
-#         if batch_idx %1700 == 0:
-#             clear_output()
-#         if batch_idx % 100 == 0:
-#              print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-#                  epoch, batch_idx * len(data), len(loader.dataset),
-#                  100. * batch_idx / len(loader), output.data[0]))
-#         #    print()
-        
-        
-        
-    
-    
-
-    
-    
 def main():
-
-    
-        # for ix in idx:
-        #     root = "./03_emnist_data/"+ix
-        #     for folder in os.listdir(root):
-        #         path = root +'/'+folder
-        #     if os.path.isdir(path):
-        #         print(path)
-        #         for name in os.listdir(path):
-        #         ipath = os.path.join(path, name)
-        #         #print(ipath)
-        #         img = cv2.imread(ipath,0)
-        #         img = 255 - img
-        #         saveto = root+'/'+name
-        #         cv2.imwrite(saveto, img)
         
     mydata = ImageFolder(root="D:\\Ugesh\\EMNIST_GITHUB_Hexadecemial\\", transform=ToTensor(), loader=pil_loader)
     loader = DataLoader(mydata, batch_size=10, shuffle=True, num_workers=2)
@@ -151,15 +78,9 @@ def main():
             if batch_idx % 100 == 0:
                   print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                       epoch, batch_idx * len(data), len(loader.dataset), 100. * batch_idx / len(loader), output.data.item()))
-                      # 100. * batch_idx / len(loader), output.data[0]))
-                       
                   print('-----------------------------------')
         
     # torch.save(model.state_dict(), 'char_recognizer_emnist_11_29.pt')
-    
-    
+
 if __name__ == '__main__':
-# dataset()
-# traning()
-# testing()
     main()
